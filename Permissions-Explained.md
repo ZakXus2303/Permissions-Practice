@@ -1,3 +1,5 @@
+Explaning how I have done it
+
 1. Creating a Shared Directory
 
 Command used:
@@ -52,7 +54,7 @@ Result:
 
 Owner can fully manage the directory
 
-Group can enter and read, but not create files
+Group can traverse (execute) and read directory contents, but cannot create or modify files.
 
 Others are completely blocked
 
@@ -103,7 +105,10 @@ This proves permissions are working as intended.
 7. Verifying from Admin User
 Command:
 exit
+ls -ld /var/soc_shared
 ls /var/soc_shared
+Explanation:
+Exiting the socmonitor user returns control to the administrative account. The ls -ld command verifies directory permissions, ownership, and group configuration. Listing the directory contents confirms that no unauthorised file creation occurred.
 
 Result:
 
@@ -164,4 +169,4 @@ ls -l        # view permissions
 
 Final Reflection (important for you to write in your own words)
 
-This exercise helped me understand how Linux enforces permissions at the filesystem level and why SOC analysts must respect access boundaries. I learned how to test permissions safely and verify whether controls are working as expected.
+This exercise demonstrated how Linux enforces permissions at the filesystem level and why SOC analysts must respect access boundaries. I learned how to test permissions safely and verify whether controls are working as expected.

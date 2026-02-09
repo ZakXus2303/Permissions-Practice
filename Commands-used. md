@@ -1,4 +1,6 @@
-1. Creating a Shared Directory
+# Linux Permissions Practice - Commands Used
+
+## 1. Creating a Shared Directory
 
 Command used:
 sudo mkdir /var/soc_shared  - text in red

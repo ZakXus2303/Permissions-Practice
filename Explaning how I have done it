@@ -1,0 +1,167 @@
+1. Creating a Shared Directory
+
+Command used:
+sudo mkdir /var/soc_shared  - text in red
+
+What this does:
+
+Creates a directory in /var
+
+/var is a system-level directory, so sudo is required
+
+Why /var?
+
+/var commonly stores:
+
+Logs
+
+Shared runtime data
+
+SOC analysts often interact with /var/log
+
+This simulates a shared SOC data location.
+
+2. Assigning Ownership
+Command:
+sudo chown zakariya:socmonitor /var/soc_shared
+
+Breakdown:
+
+zakariya → owner
+
+socmonitor → group
+
+What this means:
+
+The owner (zakariya) controls the directory
+
+Members of socmonitor group get group-level access
+
+This models controlled shared access.
+
+3. Setting Permissions (chmod)
+Command:
+sudo chmod 750 /var/soc_shared
+
+Permission Breakdown:
+Value	Meaning
+7	Owner → read, write, execute
+5	Group → read, execute
+0	Others → no access
+Result:
+
+Owner can fully manage the directory
+
+Group can enter and read, but not create files
+
+Others are completely blocked
+
+This enforces least privilege.
+
+4. Switching to SOC Analyst User
+Command:
+sudo -i -u socmonitor
+
+What this does:
+
+Switches to the socmonitor user
+
+Loads their full environment
+
+This simulates logging in as a SOC analyst, not an admin.
+
+5. Testing Access as socmonitor
+Commands:
+cd /var/soc_shared
+pwd
+whoami
+
+Purpose:
+
+Confirm current user
+
+Confirm directory access
+
+✅ Access allowed → directory readable
+❌ Write blocked → permission denied
+
+6. Attempting File Creation (Expected Failure)
+Command:
+touch test.txt
+
+Result:
+Permission denied
+
+Why this happened:
+
+Group permission = 5 (read + execute)
+
+No write permission
+
+This proves permissions are working as intended.
+
+7. Verifying from Admin User
+Command:
+exit
+ls /var/soc_shared
+
+Result:
+
+Directory exists
+
+No files created by socmonitor
+
+This confirms:
+
+Permissions are enforced system-wide
+
+Users cannot bypass controls
+
+Security Concepts Demonstrated
+🔐 Least Privilege
+
+Users only get what they need — nothing more.
+
+🧾 Access Control
+
+Linux permissions enforce security boundaries.
+
+🧑‍💻 SOC Relevance
+
+Log directories
+
+Incident artifacts
+
+Malware samples
+All require controlled access.
+
+Why This Matters for SOC Analysts
+
+In a real SOC:
+
+Analysts often read logs
+
+They do not modify system files
+
+Improper permissions = security incident
+
+This lab demonstrates:
+
+Why permissions matter
+
+How misconfigurations can expose systems
+
+How to verify access safely
+
+Key Commands Summary (for your notes)
+mkdir        # create directories
+chown        # change ownership
+chmod        # change permissions
+whoami       # verify user
+pwd          # verify location
+touch        # test write access
+ls -l        # view permissions
+
+Final Reflection (important for you to write in your own words)
+
+This exercise helped me understand how Linux enforces permissions at the filesystem level and why SOC analysts must respect access boundaries. I learned how to test permissions safely and verify whether controls are working as expected.

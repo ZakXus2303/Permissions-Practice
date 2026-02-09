@@ -1,0 +1,34 @@
+1. Creating a Shared Directory
+
+Command used:
+sudo mkdir /var/soc_shared  - text in red
+
+
+2. Assigning Ownership
+Command:
+sudo chown zakariya:socmonitor /var/soc_shared
+
+
+3. Setting Permissions (chmod)
+Command:
+sudo chmod 750 /var/soc_shared
+
+
+4. Switching to SOC Analyst User
+Command:
+sudo -i -u socmonitor
+
+5. Testing Access as socmonitor
+Commands:
+cd /var/soc_shared
+pwd
+whoami
+
+6. Attempting File Creation (Expected Failure)
+Command:
+touch test.txt
+
+7. Verifying from Admin User
+Command:
+exit
+ls /var/soc_shared

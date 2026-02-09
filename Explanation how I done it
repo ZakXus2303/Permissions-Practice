@@ -1,7 +1,7 @@
 1. Creating a Shared Directory
 
 Command used:
-sudo mkdir /var/soc_shared 
+sudo mkdir /var/soc_shared  #F54927
 
 What this does:
 

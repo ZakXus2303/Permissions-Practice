@@ -158,7 +158,7 @@ How misconfigurations can expose systems
 
 How to verify access safely
 
-Key Commands Summary (for your notes)
+Key Commands Summary (notes)
 mkdir        # create directories
 chown        # change ownership
 chmod        # change permissions
@@ -166,6 +166,8 @@ whoami       # verify user
 pwd          # verify location
 touch        # test write access
 ls -l        # view permissions
+770 is shared work space
+750 is read only
 
 Final Reflection (important for you to write in your own words)
 
